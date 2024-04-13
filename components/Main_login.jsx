@@ -10,6 +10,10 @@ import { useNavigate } from 'react-router-dom';
 import { FcGoogle } from "react-icons/fc";
 import env from "dotenv";
 import "../src/App.css";
+import { FaUser } from "react-icons/fa";
+import { RiLockPasswordFill } from "react-icons/ri";
+import { MdEmail } from "react-icons/md";
+
 
 // import Intro from '../Intro.jsx';
 // import Main_body from '../main_login.jsx';
@@ -402,12 +406,12 @@ function Main_login(props) {
 
                         <form action={BASE_URL+"/api/login"} method='POST'>
                             <div className="input-box">
-                                <span className="icon"><ion-icon name="mail"></ion-icon></span>
+                                <span className="icon"><MdEmail /></span>
                                 <input type="email" required name='Email' value={Email} onChange={(e) => { setEmail(e.target.value) }} />
                                 <label>Email</label>
                             </div>
                             <div className="input-box">
-                                <span className="icon"><ion-icon name="lock-closed"></ion-icon></span>
+                                <span className="icon"><RiLockPasswordFill /></span>
                                 <input type="password" required name='Password' value={Password} onChange={(e) => { setPassword(e.target.value) }} />
                                 <label>Password</label>
                             </div>
@@ -431,17 +435,17 @@ function Main_login(props) {
 
                         <form action={BASE_URL+"/register"} method='POST'>
                             <div className="input-box">
-                                <span className="icon"><ion-icon name="person"></ion-icon></span>
-                                <input  required name="Username" value={Username} onChange={(e) => { setUsername(e.target.value) }} />
+                                <span className="icon"><FaUser /></span>
+                                <input type='text' required name="Username" value={Username} onChange={(e) => { setUsername(e.target.value) }} />
                                 <label>Username</label>
                             </div>
                             <div className="input-box">
-                                <span className="icon"><ion-icon name="mail"></ion-icon></span>
+                                <span className="icon"><MdEmail /></span>
                                 <input type="email" required name='Email' value={Email} onChange={(e) => { setEmail(e.target.value) }} />
                                 <label>Email</label>
                             </div>
                             <div className="input-box">
-                                <span className="icon"><ion-icon name="lock-closed"></ion-icon></span>
+                                <span className="icon"><RiLockPasswordFill /></span>
                                 <input type="password" required name='Password' value={Password} onChange={(e) => { setPassword(e.target.value) }} />
                                 <label>Password</label>
                             </div>

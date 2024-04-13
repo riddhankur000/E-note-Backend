@@ -579,11 +579,13 @@ body{
     transition-timing-function: ease-in-out;
 }
 
-.input-box .icon{
+/* .input-box .icon{
     position: absolute;
     right: 10px;
     top: 40%;
-}
+    color: aliceblue;
+    z-index: 10;transform: scale(20);
+} */
 
 .input-box input:focus~label,
 .input-box input:valid~label{
