@@ -432,7 +432,7 @@ function Main_login(props) {
                         <form action={BASE_URL+"/register"} method='POST'>
                             <div className="input-box">
                                 <span className="icon"><ion-icon name="person"></ion-icon></span>
-                                <input type="text" required name="Username" value={Username} onChange={(e) => { setUsername(e.target.value) }} />
+                                <input  required name="Username" value={Username} onChange={(e) => { setUsername(e.target.value) }} />
                                 <label>Username</label>
                             </div>
                             <div className="input-box">
