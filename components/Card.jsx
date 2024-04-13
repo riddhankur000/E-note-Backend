@@ -19,6 +19,7 @@ import { BsFillPinAngleFill } from "react-icons/bs";
 
 function Card(props) {
 
+  const BASE_URL="https://enote-backend.onrender.com";
 
     // console.log(props.lst);
     // let list =props.lists[0];
@@ -32,7 +33,7 @@ function Card(props) {
       heading:props.head,
       text:props.txt
     }
-    axios.post('/api/delete', main_body).then(function (response) {
+    axios.post(BASE_URL+'/api/delete', main_body).then(function (response) {
       
         console.log(response.data);
         props.update_list(response.data.map((x)=>{return x}));

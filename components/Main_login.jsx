@@ -19,7 +19,7 @@ function Main_login(props) {
 
     // env.config();
 
-    const BASE_URL="http://localhost:3000";
+    const BASE_URL="https://enote-backend.onrender.com";
 
     const navigateTo = useNavigate();
 
@@ -147,7 +147,7 @@ function Main_login(props) {
                 token: tok_en
             }
             console.log(main_body);
-            axios.post("/api/adduser", main_body).then(async (response) => {
+            axios.post(BASE_URL+"/api/adduser", main_body).then(async (response) => {
 
                 console.log("hello");
                 console.log(response);
@@ -217,7 +217,7 @@ function Main_login(props) {
             password: Password
         }
 
-        axios.post('/api/login', main_body).then(function (response) {
+        axios.post(BASE_URL+'/api/login', main_body).then(function (response) {
             // const data = await JSON.parse(response);
             console.log(response);
             if (response.data.code == "redirect") {
@@ -252,7 +252,7 @@ function Main_login(props) {
             password: Password
         }
 
-        axios.post('/register', main_body).then(function (response) {
+        axios.post(BASE_URL+'/register', main_body).then(function (response) {
             console.log(response.data);
             if (response.data.code == "redirect") {
                 navigateTo("/Notes");
@@ -280,7 +280,7 @@ function Main_login(props) {
     }
 
     function google_auth() {
-        axios.get('/api/auth/google').then(function (response) {
+        axios.get(BASE_URL+'/api/auth/google').then(function (response) {
             // console.log(response.data);
             // setlists(response.data.map((x) => { return x }));
         })
@@ -420,7 +420,7 @@ function Main_login(props) {
                                 Don't have an Account?<span><span id="regis-ter" onClick={make_big}><b>Register Now</b></span></span>
                             </div>
                         </form>
-                        <a id='google' href={BASE_URL+"/auth/google"} role="button">
+                        <a id='google' href={"http://enote-backend.onrender.com/auth/google"} role="button">
                             <div className='btn'>Sign In With&nbsp;<div className='g_logo'><FcGoogle /></div></div>
                         </a>
                     </div>
@@ -454,7 +454,7 @@ function Main_login(props) {
                                 Already Have An Account?<span><span id="log-in" onClick={make_small}><b>Login</b></span></span>
                             </div>
                         </form>
-                        <a id='google' href={BASE_URL+"/auth/google"} role="button">
+                        <a id='google' href={"https://enote-backend.onrender.com/auth/google"} role="button">
                             <div className='btn'>Sign In With&nbsp;<div className='g_logo'><FcGoogle /></div></div>
                         </a>
                     </div>

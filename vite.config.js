@@ -15,7 +15,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: "http://localhost:3000",
+        target: "https://enote-backend.onrender.com",
         rewriteHost: true
       },
     },

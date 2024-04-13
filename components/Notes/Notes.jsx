@@ -15,6 +15,8 @@ import "../../src/App.css"
 
 function Notes() {
 
+  const BASE_URL="https://enote-backend.onrender.com";
+
   const navigateTo = useNavigate();
 
   const [count, setCount] = useState(0)
@@ -25,7 +27,7 @@ function Notes() {
   let [edit, setedit] = useState(false)
   let [show, setshow] = useState(false);
   let [clicked, setclicked] = useState(false);
-  let [lists, setlists] = useState(["hello"]);
+  let [lists, setlists] = useState([]);
   let [head, sethead] = useState();
   let [txt, settxt] = useState();
   let [listheading, setlistheading] = useState();
@@ -41,7 +43,7 @@ function Notes() {
     console.log(main_body);
 
     if (!(main_body.heading == "" && main_body.text == "")){
-      axios.post('/api/edit', main_body).then(function (response) {
+      axios.post(BASE_URL+'/api/edit', main_body).then(function (response) {
         // console.log(response.data);
         setlists(response.data.map((x) => { return x }));
       })
@@ -66,7 +68,7 @@ function Notes() {
 
   useEffect(() => {
 
-    axios.get("/api/add").then(async (response) => {
+    axios.get(BASE_URL+"/api/add").then(async (response) => {
       console.log("hello");
       console.log(response);
       setlists(response.data.notes.map((x) => { return x }));
@@ -108,29 +110,33 @@ function Notes() {
     }
   }
 
-  const send_data = () => {
+  const send_data = async () => {
 
+    // if (!(main_body.heading == "" && main_body.text == ""))
+    
     false_clicked();
-
+    
     var main_body = {
       heading: head,
       text: txt
     }
+    // console.log(main_body)
 
-    console.log(main_body);
-    console.log(lists);
-
+    // console.log(main_body);
+    // console.log(lists);
+    // console.log("acchha");
     if (!(main_body.heading == "" && main_body.text == "")){
-    axios.post('/api/add', main_body).then(function (response) {
-      console.log(response.data);
-      setlists(response.data.map((x) => { return x }));
-    })
+      axios.post(BASE_URL+'/api/add', main_body).then(function (response) {
+        console.log("axios post",response.data);
+        setlists(response.data.map((x) => { return x }));
+      })
       .catch(function (error) {
         console.log(error);
       });
+      sethead("");
+      settxt("");
     }
-    sethead("");
-    settxt("");
+    
   }
 
   const close_add=()=>{
@@ -140,6 +146,7 @@ function Notes() {
   }
 
   const log_out=()=>{
+    // send_data();
     Cookies.remove("user");
     navigateTo("/");
 
@@ -197,12 +204,12 @@ function Notes() {
             
         </div>
         <div>
-          <form onSubmit={send_data} className='input' style={{ transform: clicked ? "scale(1)" : "scale(0)" }}>
+          <div  className='input' style={{ transform: clicked ? "scale(1)" : "scale(0)" }}>
             <div  className='close_show btn_' onClick={()=>{close_add();}}><IoCloseSharp /></div>
             <input type='text' placeholder='Heading' className=' listheading' id="_listheading" value={head} onChange={(e) => { sethead(e.target.value) }} required></input>
             <textarea type='text' placeholder='Note' className=" listtext" id="_listtext" value={txt} onChange={(e) => { settxt(e.target.value) }} required></textarea>
-            <input type="submit" value="ADD" className='btn_ inside_input' />
-          </form>
+            <input onClick={send_data} type="submit" value="ADD" className='btn_ inside_input' />
+          </div>
           <div className='input' id='input_overlay' style={{ transform: clicked ? "scale(1)" : "scale(0)" }}></div>
           <div>
             <div className='Show' style={{ transform: show ? "scale(1)" : "scale(0)" }}>
